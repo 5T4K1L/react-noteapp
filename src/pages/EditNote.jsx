@@ -17,7 +17,6 @@ import {
 const AddNote = () => {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
-  const [userUID, setUserUID] = useState();
   const [notes, setNotes] = useState([]);
   const textareaRef = useRef(null);
   const { id } = useParams();
