@@ -26,6 +26,7 @@ const Register = () => {
             username,
             email,
           });
+          nav("/");
         }
       );
     } catch (error) {
