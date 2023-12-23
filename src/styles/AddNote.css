@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  position: relative;
+}
+
+.addNoteContainer input {
+  font-family: "Lato", sans-serif;
+  border: none;
+  border-bottom: 2px black solid;
+  outline: none;
+  width: calc(100% - 1em);
+  margin: 1em 0.5em;
+  font-size: 1.5em;
+  overflow-wrap: break-word;
+}
+
+.addNoteContainer textarea {
+  font-family: "Lato", sans-serif;
+  width: calc(100% - 1em);
+  resize: none;
+  min-height: 45em;
+  border: none;
+  outline: none;
+  margin: -10px 0.5em;
+  line-height: 1.5em;
+  overflow-y: hidden;
+}

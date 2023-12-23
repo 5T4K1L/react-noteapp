@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  position: relative;
+}
+
+.addNavbar {
+  background-color: black;
+  width: 100%;
+}
+
+.addNavbar .icons {
+  margin-left: 1em;
+}
+
+.addNavbar img {
+  height: 35px;
+  margin-right: 1.5em;
+  padding: 5px 0;
+}
+
+.addNavbar button {
+  cursor: pointer;
+}

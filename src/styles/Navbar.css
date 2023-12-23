@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  position: relative;
+}
+
+.navbarContainer {
+  background-color: black;
+}
+
+.contents {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.delete {
+  background-color: #ff6969;
+  font-family: "Lato", sans-serif;
+  color: white;
+  width: 100px;
+  font-size: 10px;
+  padding: 10px;
+  border-radius: 2em;
+  cursor: pointer;
+}
+
+.pencil {
+  cursor: pointer;
+  height: 30px;
+}
