@@ -3,31 +3,33 @@ import "../styles/Register.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const [userError, setUserError] = useState(false);
+
   const nav = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        async (userCredential) => {
           const user = userCredential.user;
           await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             username,
             email,
           });
-        })
-        .then(nav("/"));
+        }
+      );
     } catch (error) {
-      console.log(error);
+      setUserError(true);
     }
   };
 
@@ -56,7 +58,11 @@ const Register = () => {
           />
 
           <button>Register</button>
+          {userError && <p className="invalid">Email already taken.</p>}
         </form>
+        <p className="dohave">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );

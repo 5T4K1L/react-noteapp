@@ -7,6 +7,11 @@ body {
   position: relative;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
 .navbarContainer {
   background-color: black;
 }
@@ -18,9 +23,10 @@ body {
   justify-content: space-between;
 }
 
-button {
-  border: none;
+.signoutpenc {
   background: none;
+  display: flex;
+  align-items: center;
 }
 
 .delete {
@@ -37,4 +43,9 @@ button {
 .pencil {
   cursor: pointer;
   height: 30px;
+}
+
+.signout {
+  cursor: pointer;
+  height: 40px;
 }

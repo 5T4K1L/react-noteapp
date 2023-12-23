@@ -2,24 +2,34 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const handleRegister = (e) => {
+  const [errorUser, setErrorUser] = useState(false);
+  const nav = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      const user = userCredential.user;
-      alert("Logged in");
-    });
+    try {
+      await signInWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const user = userCredential.user;
+          nav("/");
+        }
+      );
+    } catch (error) {
+      setErrorUser(true);
+    }
   };
 
   return (
-    <div className="registerContainer">
+    <div className="loginContainer">
       <div className="inputFields">
         <h1>Login</h1>
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleLogin}>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -37,7 +47,11 @@ const Register = () => {
           />
 
           <button>Login</button>
+          {errorUser && <p className="invalid">Invalid email and password.</p>}
         </form>
+        <p className="donthave">
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
       </div>
     </div>
   );

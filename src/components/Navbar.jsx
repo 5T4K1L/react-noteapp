@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Navbar.css";
 import pencil from "../svgs/pencil-svgrepo-com(1).svg";
+import signout from "../svgs/sign-out-alt-svgrepo-com.svg";
 import "../styles/AddNote.css";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../firebase";
 import {
   collection,
@@ -42,13 +43,18 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const signOutUser = () => {
+    signOut(auth).then(nav("/"));
+  };
+
   return (
     <div className="navbarContainer">
       <div className="contents">
         <button onClick={handleDelete} className="delete">
           Delete All
         </button>
-        <button>
+        <button className="signoutpenc">
+          <img onClick={signOutUser} className="signout" src={signout} alt="" />
           <img
             className="pencil"
             onClick={handleClick}
