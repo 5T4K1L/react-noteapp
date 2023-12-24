@@ -38,6 +38,7 @@ const Navbar = () => {
 
     snapshot.docs.forEach(async (doc) => {
       await deleteDoc(doc.ref);
+      console.log(doc.ref);
     });
 
     window.location.reload();

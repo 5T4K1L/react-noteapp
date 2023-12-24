@@ -49,7 +49,7 @@ const AddNote = () => {
         const addNote = await addDoc(collection(db, "notes"), {
           uid: userUID,
           id: null,
-          title: "",
+          title: body.slice(0, 20),
           body,
         });
 
