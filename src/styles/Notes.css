@@ -32,8 +32,14 @@ body {
   padding: 0 0.7em;
 }
 
+.upperTwo {
+  display: flex;
+}
+
 .upperTwo button {
   cursor: pointer;
+  display: flex;
+  gap: 1.5em;
 }
 
 .upper h1 {
@@ -77,4 +83,23 @@ body {
 
 .none span {
   color: #4fd943;
+}
+
+.forX {
+  content: "";
+  height: 1.5em;
+  width: 5px;
+  background-color: rgb(255, 114, 114);
+  border-radius: 1em;
+  position: relative;
+  margin-right: 1em;
+}
+
+.forX:nth-child(1) {
+  transform: rotate(-50deg);
+}
+
+.forX:nth-child(2) {
+  transform: rotate(50deg);
+  position: absolute;
 }

@@ -31,23 +31,53 @@ const AddNote = () => {
 
   const handleClick = async (e) => {
     try {
-      const addNote = await addDoc(collection(db, "notes"), {
-        uid: userUID,
-        id: null,
-        title,
-        body: body + "",
-      });
+      if (!body) {
+        const addNote = await addDoc(collection(db, "notes"), {
+          uid: userUID,
+          id: null,
+          title,
+          body: "",
+        });
 
-      // Retrieve the ID of the newly added note
-      const noteID = addNote.id;
+        // Retrieve the ID of the newly added note
+        const noteID = addNote.id;
 
-      // Update the document with the generated ID
-      const noteDocRef = doc(db, "notes", noteID);
-      await updateDoc(noteDocRef, { id: noteID });
+        // Update the document with the generated ID
+        const noteDocRef = doc(db, "notes", noteID);
+        await updateDoc(noteDocRef, { id: noteID });
+      } else if (!title) {
+        const addNote = await addDoc(collection(db, "notes"), {
+          uid: userUID,
+          id: null,
+          title: "",
+          body,
+        });
+
+        // Retrieve the ID of the newly added note
+        const noteID = addNote.id;
+
+        // Update the document with the generated ID
+        const noteDocRef = doc(db, "notes", noteID);
+        await updateDoc(noteDocRef, { id: noteID });
+      } else {
+        const addNote = await addDoc(collection(db, "notes"), {
+          uid: userUID,
+          id: null,
+          title,
+          body,
+        });
+
+        // Retrieve the ID of the newly added note
+        const noteID = addNote.id;
+
+        // Update the document with the generated ID
+        const noteDocRef = doc(db, "notes", noteID);
+        await updateDoc(noteDocRef, { id: noteID });
+      }
 
       nav("/");
     } catch (error) {
-      alert("No title or body");
+      nav("/");
     }
   };
 

@@ -46,10 +46,22 @@ const AddNote = () => {
 
   const handleSubmit = async () => {
     const docRef = doc(db, "notes", id);
-    await updateDoc(docRef, {
-      title,
-      body,
-    });
+    if (!title) {
+      await updateDoc(docRef, {
+        title: notes[0].title,
+        body,
+      });
+    } else if (!body) {
+      await updateDoc(docRef, {
+        title,
+        body: notes[0].body,
+      });
+    } else if (title && body) {
+      await updateDoc(docRef, {
+        title,
+        body,
+      });
+    }
 
     nav("/");
   };

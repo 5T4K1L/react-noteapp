@@ -1,4 +1,11 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import "../styles/Notes.css";
 import pencil from "../svgs/pencil-svgrepo-com(1).svg";
 import { auth, db } from "../firebase";
@@ -41,6 +48,11 @@ const Notes = () => {
     getNotes();
   }, [userUID]);
 
+  const deleteNote = async (noteId) => {
+    await deleteDoc(doc(db, "notes", noteId));
+    window.location.reload();
+  };
+
   return (
     <div className="notesContainer">
       {none ? (
@@ -52,12 +64,19 @@ const Notes = () => {
         </div>
       ) : (
         notes.map((note) => (
-          <div className="contents">
+          <div className="contents" key={note.id}>
             <div className="upper">
               <div className="upperOne">
                 <h1>{note.title}</h1>
               </div>
               <div className="upperTwo">
+                <button
+                  onClick={() => deleteNote(note.id)}
+                  className="deleteNote"
+                >
+                  <div className="forX"></div>
+                  <div className="forX"></div>
+                </button>
                 <button>
                   <img
                     className="edit"
